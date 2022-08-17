@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table>
+        <tr>
+            <th>Nome</th>
+            <th>PIS</th>
+            <th>Função</th>
+            <th>Status</th>
+            <th>Admissão</th>
+            <th>Condição</th>
+        </tr>
+        {% for Collab in DataCollab %}
+            <tr>
+                <td>{{Collab.name}}</td>
+                <td>{{Collab.pis}}</td>
+                <td>{{Collab.occupation}}</td>
+                <td>{{Collab.status}}</td>
+                <td>{{Collab.admission}}</td>
+                <td>{{Collab.time_bank}}</td>
+            </tr>
+            <tr class="update">
+                <form action="post">
+                    <td><input type="hidden" name="pis" value="{{Collab.pis}}"></td>
+                    <td><label for="occupation">Função:</label></td>
+                    <td><input type="text" name="occupation" value="{{Collab.occupation}}"></td>
+                    <td><label for="status">Status:</label></td>
+                    <td>{{EditCollab.status}}</td>
+                    <td><label for="time_bank">Modalidade:</label></td>
+                    <td>{{EditCollab.time_bank}}</td>
+                    <td><input type="submit" value="Atualizar"></td>
+                </form>
+            </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
