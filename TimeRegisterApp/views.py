@@ -15,7 +15,7 @@ def Collaborator(request):
         'EditCollab':EditCollab
         }
     if request.method == 'GET':
-        return render(request, 'colaborador.html', context)
+        return render(request, 'test.html', context)
     if request.method == 'POST':
         UpdateError = CreateCollab(post=request.POST)
         if UpdateError == False:

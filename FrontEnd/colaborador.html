@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt_BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Colaboradores</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+    <div class="navigation_container">
+        <nav class="menu_navigation">
+            <a class="menu_item" href="#">Colaborador</a>
+            <a class="menu_item" href="#">Apontamento</a>
+            <a class="menu_item" href="#">Relatório</a>
+            <a class="menu_item" href="#">Banco de Horas</a>
+        </nav>
+    </div>
+    <div class="header_container"></div>
+    <div class="body_container">
+
+        <!-- Formulário de cadastro dos colaboradores -->
+            <form class="row_container">
+                <div class="column_container" id="first_column">
+                    <label for="name">Nome: </label>
+                    <input type="text" name="name">
+                    <label for="pis">PIS:</label>
+                    <input type="number" name="pis">
+                </div>
+                <div class="column_container">
+                    <label for="occupation">Função:</label>
+                    <input type="text" name="occupation">
+                    <label for="status">Status</label>
+                    <select name="status" id="status_id">
+                        <option value="True">Ativo</option>
+                        <option value="False">Inativo</option>
+                    </select>
+                </div>
+                <div class="column_container">
+                    <label for="admission">Admissão:</label>
+                    <input type="date" name="admission">
+                    <label for="time_bank">Modalidade:</label>
+                    <select name="time_bank" id="time_bank_id">
+                        <option value="True">Banco de Horas</option>
+                        <option value="False">Hora Extra</option>
+                    </select>
+                </div>
+            </form>
+    </div>
+</body>
+</html>
