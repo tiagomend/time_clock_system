@@ -32,10 +32,10 @@
 .body_container{
     position: absolute;
     top:70px;
-    right: 10px;
-    width: 80%;
+    right: 15px;
+    width: 78%;
     height: 100%;
-    z-index: -1;
+    z-index: 1;
 }
 
 .menu_navigation{
@@ -61,23 +61,78 @@
     flex-direction: row;
     height: 20%;
     gap:20px;
-    padding: 30px;
-}
-
-#first_column{
-    margin-left: 20px;
+    padding: 30px 30px 30px 0px;
 }
 
 .column_container{
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 10px ;
     padding: 10px 10px 10px 10px;
     width: 100%;
 }
 
 label{
     font-size: 15px;
-    font-weight: 600;
+    font-weight: 400;
+    font-style: italic;
 }
 
+h2{
+    color: rgb(59, 59, 59);
+    font-weight: 700;
+    font-size: 25px;
+    border-bottom: #0088aa solid 1px;
+    padding-bottom: 10px;
+    width: 50%;
+}
+
+select, input{
+    border: rgb(221, 221, 221) solid 1px;
+    padding: 5px;
+    border-left: #0088aa solid 4px;
+    background-color: #ffffff;
+    font-size: 15px;
+}
+
+input:focus, select:focus{
+    outline: none;
+    background-color: rgb(238, 238, 238);
+}
+
+input[type=date]{
+    border: rgb(221, 221, 221) solid 1px;
+    padding: 15px;
+    border-left: #0088aa solid 4px;
+    background-color: #ffffff;
+    font-size: 15px;
+}
+
+option{
+    font-size: 15px;
+    font-weight: 400;
+    font-style: italic;
+}
+
+.register_button{
+    border-radius: 25px;
+    color: aliceblue;
+    background-color: #09B87A;
+    border: none;
+    padding: 10px;
+    font-size: 17px;
+    font-weight: 600;
+    width: 70%;
+    margin-top: 15px;
+}
+
+.register_button:hover{
+    background-color: #18ad79;
+}
+
+.fa-bars{
+    color: #ffffff;
+    font-size: 30px;
+    margin-left: 10px;
+    margin-top: 15px;
+}
