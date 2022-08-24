@@ -1,10 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Red+Hat+Text:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap');
 
 * {
     margin: 0;
     padding: 0;
     text-decoration: none;
-    font-family: 'Quicksand', sans-serif;
+    font-family: 'Red Hat Text', sans-serif;;
     font-weight: 400;
     font-size: 17px;
 }
@@ -14,11 +14,10 @@
     top: 0px;
     height: 100%;
     width: 20%;
-    background-color: #004455;
+    background-color: #0088aa;
     display: flex;
     flex-direction: column;
     gap:10px;
-    justify-content: center;
 }
 
 .header_container{
@@ -27,7 +26,7 @@
     right: 0px;
     height: 60px;
     width: 80%;
-    background-color: #0088aa;
+    background-color: #37abc8;
 }
 
 .body_container{
@@ -43,6 +42,7 @@
     display: flex;
     flex-direction: column;
     gap:10px;
+    margin-top: 200px;
 }
 
 .menu_item{
@@ -53,14 +53,15 @@
 }
 
 .menu_item:hover{
-    background-color: #0088aa;
+    background-color: #37abc8;
 }
 
 .row_container{
     display: flex;
     flex-direction: row;
     height: 20%;
-    gap:5px;
+    gap:20px;
+    padding: 30px;
 }
 
 #first_column{
