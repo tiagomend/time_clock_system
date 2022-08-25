@@ -10,47 +10,53 @@
 <body>
     <div id="navigation_container_open" class="navigation_container">
         <nav class="menu_navigation">
-            <a class="menu_item" href="#">Colaborador</a>
-            <a class="menu_item" href="#">Apontamento</a>
-            <a class="menu_item" href="#">Relatório</a>
-            <a class="menu_item" href="#">Banco de Horas</a>
+            <a class="menu_item" href="#"><i class="fa-regular fa-circle-user"></i></i>Colaborador</a>
+            <a class="menu_item" href="#"><i class="fa-regular fa-clock"></i>Apontamento</a>
+            <a class="menu_item" href="#"><i class="fa-solid fa-file-export"></i>Relatório</a>
+            <a class="menu_item" href="#"><i class="fa-solid fa-clock-rotate-left"></i>Banco de Horas</a>
         </nav>
     </div>
     <div id="header_container_id" class="header_container">
-        <i id="bars" class="fa-solid fa-bars" onclick='close_menu()'></i>
+        <a id="bars" onclick='close_menu()'><i class="fa-solid fa-bars"></i></a>
+        <img id="logo" src="image/logo.png" alt="Time Clock System">
     </div>
     <div id ="body_container_id" class="body_container">
         <div class="column_container">
             <h2>Registro de Colaboradores</h2>
         </div>
-        <!-- Formulário de cadastro dos colaboradores -->
-            <form class="row_container">
-                <div class="column_container" >
-                    <label for="name">Nome: </label>
-                    <input type="text" name="name">
-                    <label for="pis">PIS:</label>
-                    <input type="number" name="pis">
-                    <input class="register_button" type="submit" value="Cadastrar">
-                </div>
-                <div class="column_container">
-                    <label for="occupation">Função:</label>
-                    <input type="text" name="occupation">
-                    <label for="status">Status</label>
-                    <select name="status" id="status_id">
-                        <option value="True">Ativo</option>
-                        <option value="False">Inativo</option>
-                    </select>
-                </div>
-                <div class="column_container">
-                    <label for="admission">Admissão:</label>
-                    <input type="date" name="admission">
-                    <label for="time_bank">Modalidade:</label>
-                    <select name="time_bank" id="time_bank_id">
-                        <option value="True">Banco de Horas</option>
-                        <option value="False">Hora Extra</option>
-                    </select>
-                </div>
-            </form>
+                <!-- Formulário de cadastro dos colaboradores -->
+        <form class="row_container">
+            <div class="column_container" >
+                <label for="name">Nome: </label>
+                <input type="text" name="name">
+                <label for="pis">PIS:</label>
+                <input type="number" name="pis">
+                <input class="register_button" type="submit" value="Cadastrar">
+            </div>
+            <div class="column_container">
+                <label for="occupation">Função:</label>
+                <input type="text" name="occupation">
+                <label for="status">Status</label>
+                <select name="status" id="status_id">
+                    <option value="True">Ativo</option>
+                    <option value="False">Inativo</option>
+                </select>
+            </div>
+            <div class="column_container">
+                <label for="admission">Admissão:</label>
+                <input type="date" name="admission">
+                <label for="time_bank">Modalidade:</label>
+                <select name="time_bank" id="time_bank_id">
+                    <option value="True">Banco de Horas</option>
+                    <option value="False">Hora Extra</option>
+                </select>
+            </div>
+        </form>
+        <div class="row_container">
+            <div class="column_container">
+                <h2>Colaboradores</h2>
+            </div>
+        </div>
     </div>
 
 <script src="script/script.js"></script>
