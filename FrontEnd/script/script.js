@@ -14,3 +14,14 @@ function close_menu(){
         document.getElementById("navigation_container_close").id = "navigation_container_open";
     }
 }
+
+function close_table(){
+    if (document.getElementById("row_edit_1").style.display == "none"){
+        document.getElementById("row_edit_1").style.display = "table-row";
+    }
+
+    else {
+        document.getElementById("row_edit_1").style.display = "none";
+    }
+}
+
