@@ -24,4 +24,3 @@ function close_table(data_id){
         document.getElementById(data_id).style.display = "none";
     }
 }
-

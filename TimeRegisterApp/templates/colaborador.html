@@ -57,28 +57,35 @@
                     <td>{{colab.name}}</td>
                     <td>{{colab.pis}}</td>
                     <td>{{colab.occupation}}</td>
-                    <td>{{colab.status}}</td>
-                    <td>{{colab.admission}}</td>
-                    <td>{{colab.time_bank}}</td>
                     <td>
-                        <a id="edit_column_close" class="column_edit" onclick='close_table("row_edit_{{forloop.counter}}")'>
+                        {% if colab.status == True %}Ativo{% endif %}
+                        {% if colab.status == False %}Inativo{% endif %}
+                    </td>
+                    <td>{{colab.admission}}</td>
+                    <td>
+                        {% if colab.time_bank == True %}Banco de Horas{% endif %}
+                        {% if colab.time_bank == False %}Horas Extras{% endif %}
+                    </td>
+                    <td>
+                        <button class="column_edit_button" onclick='close_table("row_edit_{{forloop.counter}}")'>
                             <i class="fa-solid fa-ellipsis-vertical"></i>
-                        </a>
+                        </button>
                     </td>
                 </tr>
                 <tr id="row_edit_{{forloop.counter}}" class="row_edit">
                     <form action="/colaborador/" method="post">
                         {% csrf_token %}
+                        <input type="hidden" name="form_name" value="edit_colab">
                         <td class="column_edit"><input name="pis" type="hidden" value="{{colab.pis}}"></td>
                         <td class="column_edit"><input name="occupation" type="text" value="{{colab.occupation}}"></td>
                         <td class="column_edit">
-                            <select name="status_edit" id="status_id_edit">
+                            <select name="status" id="status_id_edit">
                                 <option value="True">Ativo</option>
                                 <option value="False">Inativo</option>
                             </select>
                         </td>
                         <td class="column_edit">
-                            <select name="time_bank_edit" id="time_bank_id_edit">
+                            <select name="time_bank" id="time_bank_id_edit">
                                 <option value="True">Banco de Horas</option>
                                 <option value="False">Hora Extra</option>
                             </select>
@@ -89,7 +96,8 @@
                     <td>
                         <form action="/colaborador/" method="post">
                             {% csrf_token %}
-                            <input name="delete_collab" type="hidden" value="{{colab.pis}}">
+                            <input name="form_name" type="hidden" value="form_delete_colab">
+                            <input name="pis" type="hidden" value="{{colab.pis}}">
                             <button class="icon_delete" type="submit"><i class="fa-solid fa-trash-arrow-up"></i></button>
                         </form>
                     </td>

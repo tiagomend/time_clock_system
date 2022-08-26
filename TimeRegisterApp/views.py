@@ -19,6 +19,18 @@ def Collaborator(request):
                 return render(request, 'colaborador.html', context)
             else:
                 return HttpResponse('Colaborador já existe')
+        if request.POST['form_name'] == "form_delete_colab":
+            UpdateError = DeleteCollab(post=request.POST)
+            if UpdateError == False:
+                return render(request, 'colaborador.html', context)
+            else:
+                return HttpResponse('Colaborador não existe!')
+        if request.POST['form_name'] == "edit_colab":
+            UpdateError = UpdateCollab(post=request.POST)
+            if UpdateError == False:
+                return render(request, 'colaborador.html', context)
+            else:
+                return HttpResponse('Colaborador não existe!')
 
 def test(request):
     FormCollab = RegistrationCollabForm()
