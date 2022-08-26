@@ -1,43 +1,102 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <table>
-        <tr>
-            <th>Nome</th>
-            <th>PIS</th>
-            <th>Função</th>
-            <th>Status</th>
-            <th>Admissão</th>
-            <th>Condição</th>
-        </tr>
-        {% for Collab in DataCollab %}
-            <tr>
-                <td>{{Collab.name}}</td>
-                <td>{{Collab.pis}}</td>
-                <td>{{Collab.occupation}}</td>
-                <td>{{Collab.status}}</td>
-                <td>{{Collab.admission}}</td>
-                <td>{{Collab.time_bank}}</td>
-            </tr>
-            <tr class="update">
-                <form action="post">
-                    <td><input type="hidden" name="pis" value="{{Collab.pis}}"></td>
-                    <td><label for="occupation">Função:</label></td>
-                    <td><input type="text" name="occupation" value="{{Collab.occupation}}"></td>
-                    <td><label for="status">Status:</label></td>
-                    <td>{{EditCollab.status}}</td>
-                    <td><label for="time_bank">Modalidade:</label></td>
-                    <td>{{EditCollab.time_bank}}</td>
-                    <td><input type="submit" value="Atualizar"></td>
-                </form>
-            </tr>
-        {% endfor %}
-    </table>
-</body>
-</html>
+{% extends 'menu.html' %}
+
+{% block colaborador %}
+<div id ="body_container_id" class="body_container">
+    <div class="column_container">
+        <h2>Registro de Colaboradores</h2>
+    </div>
+            <!-- Formulário de cadastro dos colaboradores -->
+    <form action="/colaborador/" class="row_container" method="post">
+        <div class="column_container" >
+            {% csrf_token %}
+            <label for="name">Nome: </label>
+            <input type="text" name="name">
+            <label for="pis">PIS:</label>
+            <input type="number" name="pis">
+            <input class="register_button" type="submit" value="Cadastrar">
+        </div>
+        <div class="column_container">
+            <label for="occupation">Função:</label>
+            <input type="text" name="occupation">
+            <label for="status">Status</label>
+            <select name="status" id="status_id">
+                <option value="True">Ativo</option>
+                <option value="False">Inativo</option>
+            </select>
+        </div>
+        <div class="column_container">
+            <label for="admission">Admissão:</label>
+            <input type="date" name="admission">
+            <label for="time_bank">Modalidade:</label>
+            <select name="time_bank" id="time_bank_id">
+                <option value="True">Banco de Horas</option>
+                <option value="False">Hora Extra</option>
+            </select>
+            <input name="form_name" type="hidden" value="collab_form">
+        </div>
+    </form>
+    <div class="row_container">
+        <div class="column_container">
+            <h2>Colaboradores</h2>
+        </div>
+    </div>
+    <div class="row_container">
+        <div class="column_container">
+            <table>
+                <tr class="header_row">
+                    <th>NOME</th>
+                    <th>PIS</th>
+                    <th>FUNÇÃO</th>
+                    <th>STATUS</th>
+                    <th>ADMISSÃO</th>
+                    <th>MODALIDADE</th>
+                    <th>EDIT</th>
+                </tr>
+                {% for  colab in DataCollab %}
+                <tr>
+                    <td>{{colab.name}}</td>
+                    <td>{{colab.pis}}</td>
+                    <td>{{colab.occupation}}</td>
+                    <td>{{colab.status}}</td>
+                    <td>{{colab.admission}}</td>
+                    <td>{{colab.time_bank}}</td>
+                    <td>
+                        <a id="edit_column_close" class="column_edit" onclick='close_table("row_edit_{{forloop.counter}}")'>
+                            <i class="fa-solid fa-ellipsis-vertical"></i>
+                        </a>
+                    </td>
+                </tr>
+                <tr id="row_edit_{{forloop.counter}}" class="row_edit">
+                    <form action="/colaborador/" method="post">
+                        {% csrf_token %}
+                        <td class="column_edit"><input name="pis" type="hidden" value="{{colab.pis}}"></td>
+                        <td class="column_edit"><input name="occupation" type="text" value="{{colab.occupation}}"></td>
+                        <td class="column_edit">
+                            <select name="status_edit" id="status_id_edit">
+                                <option value="True">Ativo</option>
+                                <option value="False">Inativo</option>
+                            </select>
+                        </td>
+                        <td class="column_edit">
+                            <select name="time_bank_edit" id="time_bank_id_edit">
+                                <option value="True">Banco de Horas</option>
+                                <option value="False">Hora Extra</option>
+                            </select>
+                        </td>
+                        <td></td>
+                        <td><input class="register_button" type="submit" value="Editar"></td>
+                    </form>
+                    <td>
+                        <form action="/colaborador/" method="post">
+                            {% csrf_token %}
+                            <input name="delete_collab" type="hidden" value="{{colab.pis}}">
+                            <button class="icon_delete" type="submit"><i class="fa-solid fa-trash-arrow-up"></i></button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock colaborador %}

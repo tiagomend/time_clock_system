@@ -6,22 +6,19 @@ from .crud import CreateCollab, UpdateCollab, DeleteCollab
 
 # Create your views here.
 def Collaborator(request):
-    FormCollab = RegistrationCollabForm()
     DataCollab = RegistrationCollab.objects.all()
-    EditCollab = EditCollabForm()
     context =  {
-        'FormCollab':FormCollab, 
         'DataCollab':DataCollab, 
-        'EditCollab':EditCollab
         }
     if request.method == 'GET':
-        return render(request, 'test.html', context)
+        return render(request, 'colaborador.html', context)
     if request.method == 'POST':
-        UpdateError = CreateCollab(post=request.POST)
-        if UpdateError == False:
-            return HttpResponse('Dados Salvos com sucesso!')
-        else:
-            return HttpResponse('Colaborador já existe')
+        if request.POST['form_name'] == "collab_form":
+            UpdateError = CreateCollab(post=request.POST)
+            if UpdateError == False:
+                return render(request, 'colaborador.html', context)
+            else:
+                return HttpResponse('Colaborador já existe')
 
 def test(request):
     FormCollab = RegistrationCollabForm()

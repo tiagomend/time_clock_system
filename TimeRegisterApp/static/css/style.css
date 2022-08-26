@@ -159,6 +159,7 @@ td, th {
 .row_edit{
     background-color: aliceblue;
     border: #e0e0e0 solid 1px;
+    display: none;
 }
 
 .edit_column {
