@@ -6,7 +6,7 @@
     text-decoration: none;
     font-family: 'Red Hat Text', sans-serif;;
     font-weight: 400;
-    font-size: 17px;
+    font-size: 15px;
 }
 
 .navigation_container {
@@ -86,8 +86,8 @@ h2{
     font-size: 25px;
     border-bottom: #b9b9b9 solid 1px;
     padding-bottom: 10px;
-    width: 30%;
-    margin-top: 20px;
+    width: 35%;
+    margin-top: 10px;
 }
 
 select, input{
@@ -151,6 +151,7 @@ table, tr {
 
 td, th {
     padding: 10px;
+    font-size: 14px;
 }
 
 .column_edit{

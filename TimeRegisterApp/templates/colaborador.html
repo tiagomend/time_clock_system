@@ -5,7 +5,8 @@
     <div class="column_container">
         <h2>Registro de Colaboradores</h2>
     </div>
-            <!-- Formulário de cadastro dos colaboradores -->
+    
+    <!-- Formulário de cadastro dos colaboradores -->
     <form action="/colaborador/" class="row_container" method="post">
         <div class="column_container" >
             {% csrf_token %}
@@ -18,7 +19,7 @@
         <div class="column_container">
             <label for="occupation">Função:</label>
             <input type="text" name="occupation">
-            <label for="status">Status</label>
+            <label for="status">Status:</label>
             <select name="status" id="status_id">
                 <option value="True">Ativo</option>
                 <option value="False">Inativo</option>
@@ -29,15 +30,17 @@
             <input type="date" name="admission">
             <label for="time_bank">Modalidade:</label>
             <select name="time_bank" id="time_bank_id">
-                <option value="True">Banco de Horas</option>
-                <option value="False">Hora Extra</option>
+                <option value="True">Banco de hora</option>
+                <option value="False">Hora extra</option>
             </select>
             <input name="form_name" type="hidden" value="collab_form">
         </div>
     </form>
+
+    <!-- Sessão p/ listar e editar os colaboradores-->
     <div class="row_container">
         <div class="column_container">
-            <h2>Colaboradores</h2>
+            <h2>Lista de Colaboradores</h2>
         </div>
     </div>
     <div class="row_container">
@@ -58,13 +61,13 @@
                     <td>{{colab.pis}}</td>
                     <td>{{colab.occupation}}</td>
                     <td>
-                        {% if colab.status == True %}Ativo{% endif %}
-                        {% if colab.status == False %}Inativo{% endif %}
+                        {% if colab.status == True %}ATIVO{% endif %}
+                        {% if colab.status == False %}INATIVO{% endif %}
                     </td>
                     <td>{{colab.admission}}</td>
                     <td>
-                        {% if colab.time_bank == True %}Banco de Horas{% endif %}
-                        {% if colab.time_bank == False %}Horas Extras{% endif %}
+                        {% if colab.time_bank == True %}BANCO DE HORA{% endif %}
+                        {% if colab.time_bank == False %}HORA EXTRA{% endif %}
                     </td>
                     <td>
                         <button class="column_edit_button" onclick='close_table("row_edit_{{forloop.counter}}")'>
@@ -86,8 +89,8 @@
                         </td>
                         <td class="column_edit">
                             <select name="time_bank" id="time_bank_id_edit">
-                                <option value="True">Banco de Horas</option>
-                                <option value="False">Hora Extra</option>
+                                <option value="True">Banco de hora</option>
+                                <option value="False">Hora extra</option>
                             </select>
                         </td>
                         <td></td>

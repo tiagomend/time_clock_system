@@ -8,8 +8,8 @@ def CreateCollab(post):
     else:
         Collab = RegistrationCollab.objects.create(
             pis=requisition_data['pis'],
-            name=requisition_data['name'],
-            occupation=requisition_data['occupation'],
+            name=str(requisition_data['name']).upper(),
+            occupation=str(requisition_data['occupation']).upper(),
             status=requisition_data['status'],
             admission=requisition_data['admission'],
             time_bank=requisition_data['time_bank']
