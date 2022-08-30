@@ -24,3 +24,26 @@ function close_table(data_id){
         document.getElementById(data_id).style.display = "none";
     }
 }
+
+// Obtenha o elemento com id="defaultOpen" e clique nele
+document.getElementById("defaultOpen").click();
+ 
+function openCity(evt, cityName) {
+    var i, tabcontent, tablinks;
+
+    // Obtenha todos os elementos com class="tabcontent" e oculte-os
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+
+    // Obtenha todos os elementos com class="tablinks" e remova a classe "active"
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+
+    // Mostre a guia atual e adicione uma classe "ativa" ao botão que abriu a guia
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active";
+}

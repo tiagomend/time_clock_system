@@ -20,7 +20,7 @@ class EventOccurrence(models.Model):
     date = models.DateField()
 
 class TimeRegister(models.Model):
-    key = models.CharField(primary_key=True, max_length=15)
+    key = models.CharField(primary_key=True, max_length=30)
     date = models.DateField()
     pis = models.ForeignKey(RegistrationCollab, on_delete=models.CASCADE)
     entry_one = models.TimeField()
@@ -30,6 +30,7 @@ class TimeRegister(models.Model):
     exit_two = models.TimeField()
     exit_three = models.TimeField()
     month = models.IntegerField()
+    information = models.CharField(max_lenght=15)
 
 # Armazena Banco de Horas
 class TimeBank(models.Model):
