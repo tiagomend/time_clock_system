@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .forms import RegistrationCollabForm, EditCollabForm
-from .models import RegistrationCollab
+from .models import RegistrationCollab, TimeRegister
 from .crud import CreateCollab, UpdateCollab, DeleteCollab
 
 # Create your views here.
@@ -42,3 +42,13 @@ def test(request):
             return HttpResponse('Dados cadastrados com sucesso!')
         else:
             return HttpResponse('Dados existentes!')
+
+def TimeNote(request):
+    DataCollab = RegistrationCollab.objects.all()
+    context =  {
+        'DataCollab':DataCollab, 
+        }
+    if request.method == 'GET':
+        return render(request, 'apontamento.html', context)
+    if request.method == 'POST':
+        return render(request, 'return.html', context)

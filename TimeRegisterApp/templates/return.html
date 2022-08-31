@@ -1,0 +1,30 @@
+{% extends 'apontamento.html' %}
+{% block return_message %}
+<div class="return_container">
+    <div class="success_message">TIAGO PACHECO foi  apontado com sucesso!</div>
+    <table class="return_container_table">
+        <tr>
+            <th class="return_th">Data</th>
+            <th class="return_th">Semana</th>
+            <th  class="return_th">Entrada 1</th>
+            <th class="return_th">Saída 1</th>
+            <th class="return_th">Entrada 2</th>
+            <th class="return_th">Saída 2</th>
+            <th class="return_th">Entrada 3</th>
+            <th class="return_th">Saída 3</th>
+            <th class="return_th">Informação</th>
+        </tr>
+        <tr>
+            <td>30/08/2022</td>
+            <td>Terça-feira</td>
+            <td>07:30</td>
+            <td>12:00</td>
+            <td>13:15</td>
+            <td>17:00</td>
+            <td></td>
+            <td></td>
+            <td>Apontado</td>
+        </tr>
+    </table>
+</div>
+{% endblock return_message %}

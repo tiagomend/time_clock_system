@@ -7,13 +7,12 @@
     <title>Registro de Colaboradores</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <script src="https://kit.fontawesome.com/6d9736f538.js" crossorigin="anonymous"></script>
-    <script src="{% static 'script/script.js' %}"></script>
 </head>
 <body>
     <div id="navigation_container_open" class="navigation_container">
         <nav class="menu_navigation">
-            <a class="menu_item" href="/colaborador"><i class="fa-regular fa-circle-user"></i></i>Colaborador</a>
-            <a class="menu_item" href="#"><i class="fa-regular fa-clock"></i>Apontamento</a>
+            <a class="menu_item" href="/colaborador/"><i class="fa-regular fa-circle-user"></i></i>Colaborador</a>
+            <a class="menu_item" href="/apontamento/"><i class="fa-regular fa-clock"></i>Apontamento</a>
             <a class="menu_item" href="#"><i class="fa-solid fa-file-export"></i>Relatório</a>
             <a class="menu_item" href="#"><i class="fa-solid fa-clock-rotate-left"></i>Banco de Horas</a>
         </nav>
@@ -23,6 +22,8 @@
     </div>
 
 {% block colaborador %}{% endblock colaborador %}
+{% block apontamento %}{% endblock apontamento %}
 
+<script src="{% static 'script/script.js' %}"></script>
 </body>
 </html>
