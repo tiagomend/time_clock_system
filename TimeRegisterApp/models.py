@@ -30,7 +30,7 @@ class TimeRegister(models.Model):
     exit_two = models.TimeField()
     exit_three = models.TimeField()
     month = models.IntegerField()
-    information = models.CharField(max_lenght=15)
+    info = models.IntegerField()
 
 # Armazena Banco de Horas
 class TimeBank(models.Model):
