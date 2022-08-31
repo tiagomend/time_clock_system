@@ -145,6 +145,7 @@ table, tr {
     text-align: left;
     font-weight: 700;
     margin-top: 40px;
+    width: 100%;
 }
 
 td, th {
@@ -205,11 +206,41 @@ tr:nth-child(even) {
   /* Style the tab content */
   .tabcontent {
     display: none;
-    padding: 6px 12px;
+    padding: 12px;
     border: 1px solid #ccc;
     border-top: none;
   }
 
 .tablinks {
+    font-size: 16px;
+}
+
+.medium_container{
+    width: 70%;
+}
+
+.return_container{
+    padding: 10px;
+    margin-top: 30px;
+    width: 100%;
+}
+
+.return_container_table{
+    width: 98%;
+}
+
+.success_message{
+    background-color: #09B87A;
+    border: #238361 solid 1px;
+    border-radius: 5px;
+    padding: 20px;
+    width: 62%;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.return_th{
+    font-weight: 400;
+    font-style: italic;
     font-size: 16px;
 }

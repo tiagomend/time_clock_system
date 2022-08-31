@@ -20,100 +20,92 @@
         <a id="bars" onclick='close_menu()'><i class="fa-solid fa-bars"></i></a>
     </div>
     <div id ="body_container_id" class="body_container">
-            <!-- Tab links -->
-            <div class="tab">
-                <button class="tablinks" onclick="openCity(event, 'manual')" id="defaultOpen">Manual</button>
-                <button class="tablinks" onclick="openCity(event, 'primme')">Primme SF</button>
-                <button class="tablinks" onclick="openCity(event, 'Tokyo')">Ponto Digital</button>
-            </div>
+        <!-- Tab links -->
+        <div class="tab">
+            <button class="tablinks" onclick="openCity(event, 'manual')" id="defaultOpen">Manual</button>
+            <button class="tablinks" onclick="openCity(event, 'primme')">Primme SF</button>
+            <button class="tablinks" onclick="openCity(event, 'Tokyo')">Ponto Digital</button>
+        </div>
             
-            <!-- Tab content -->
-            <div id="manual" class="tabcontent">
-                <div class="row_container">
-                    <!-- Aqui inicia o formulário de apontamento manual -->
-                    <form class="row_container" action="{% url 'apontamento' %}" method="post">
-                        <div class="column_container">
-                            <label for="pis">Colaborador:</label>
-                            <select name="pis">
-                                    <option value="123456">Tiago Fernandes Mendonça</option>]
-                                    <option value="123457">Pedro Pacheco</option>
-                            </select>
-                            <label for="entry_one">Entrada 1:</label>
-                            <input name="entry_one" type="time">
-                            <label for="entry_two">Entrada 2:</label>
-                            <input name="entry_two" type="time">
-                            <label for="entry_three">Entrada 3:</label>
-                            <input name="entry_three" type="time">
-                            <label for="information">Informação:</label>
-                            <select name="information">
-                                <option value="1">Apontado</option>
-                                <option value="2">Falta</option>
-                                <option value="3">Feriado</option>
-                                <option value="4">Atestado</option>
-                            </select>
-                        </div>
-                        <div class="column_container">
-                            <input type="hidden" name="form_name" value="manual">
-                            <label for="exit_one">Saída 1:</label>
-                            <input name="exit_one" type="time">
-                            <label for="exit_two">Saída 2:</label>
-                            <input name="exit_two" type="time">
-                            <label for="exit_three">Saída 3:</label>
-                            <input name="exit_three" type="time">
-                            <input type="submit" value="Salvar" class="register_button">
-                        </div>
-                    </form>
-                    <!-- Aqui termina o formulário -->
-                </div>
-            </div>
-            
-            <div id="primme" class="tabcontent">
-                <form action="{% url 'apontamento' %}" method="post" enctype="multipart/form-data">
-                        {% csrf_token %}
-                        <input type="hidden" name="formulario" value="primme">
-                        {{ formPrimme }}
-                        <input type="submit" value="Enviar" class="salvar">
+        <!-- Tab content -->
+        <div id="manual" class="tabcontent">
+            <div class="medium_container">
+                <!-- Aqui inicia o formulário de apontamento manual -->
+                <form class="row_container" action="{% url 'apontamento' %}" method="post">
+                    <div class="column_container">
+                        <label for="pis">Colaborador:</label>
+                        <select name="pis">
+                            <option value="123456">Tiago Fernandes Mendonça</option>
+                            <option value="123457">Pedro Pacheco</option>
+                        </select>
+                        <label for="entry_one">Entrada 1:</label>
+                        <input name="entry_one" type="time">
+                        <label for="entry_two">Entrada 2:</label>
+                        <input name="entry_two" type="time">
+                        <label for="entry_three">Entrada 3:</label>
+                        <input name="entry_three" type="time">
+                        <label for="information">Informação:</label>
+                        <select name="information">
+                            <option value="1">Apontado</option>
+                            <option value="2">Falta</option>
+                            <option value="3">Feriado</option>
+                            <option value="4">Atestado</option>
+                        </select>
+                    </div>
+                    <div class="column_container">
+                        <label for="date">Data: </label>
+                        <input name="date" type="date">
+                        <input type="hidden" name="form_name" value="manual">
+                        <label for="exit_one">Saída 1:</label>
+                        <input name="exit_one" type="time">
+                        <label for="exit_two">Saída 2:</label>
+                        <input name="exit_two" type="time">
+                        <label for="exit_three">Saída 3:</label>
+                        <input name="exit_three" type="time">
+                        <input type="submit" value="Salvar" class="register_button">
+                    </div>
                 </form>
-                {{msg}}
+                <!-- Aqui termina o formulário -->
             </div>
-            
-            <div id="Tokyo" class="tabcontent">
-                
-            </div>
-    
-            <div class="sanfona">
-                <h3>Relatório de Apontamento</h3>
-            </div>
-            <div class="container-colum">
-                
-                <table>
+            <div class="return_container">
+                <div class="success_message">TIAGO PACHECO foi  apontado com sucesso!</div>
+                <table class="return_container_table">
                     <tr>
-                        <th>DATA</th>
-                        <th>NOME</th>
-                        <th>ENTRADA</th>
-                        <th>SAÍDA</th>
-                        <th>ENTRADA</th>
-                        <th>SAÍDA</th>
-                        <th>ENTRADA</th>
-                        <th>SAÍDA</th>
-                        <th>INFORMAÇÃO</th>
-                        <th>MÊS</th>
+                        <th class="return_th">Data</th>
+                        <th class="return_th">Semana</th>
+                        <th  class="return_th">Entrada 1</th>
+                        <th class="return_th">Saída 1</th>
+                        <th class="return_th">Entrada 2</th>
+                        <th class="return_th">Saída 2</th>
+                        <th class="return_th">Entrada 3</th>
+                        <th class="return_th">Saída 3</th>
+                        <th class="return_th">Informação</th>
                     </tr>
                     <tr>
-                        <td>{{apont.data_ap}}</td>
-                        <td>{{apont.PIS}}</td>
-                        <td>{{apont.entrada1}}</td>
-                        <td>{{apont.saida1}}</td>
-                        <td>{{apont.entrada2}}</td>
-                        <td>{{apont.saida2}}</td>
-                        <td>{{apont.entrada3}}</td>
-                        <td>{{apont.saida3}}</td>
-                        <td>{{apont.evento}}</td>
-                        <td>{{apont.mes}}</td>
+                        <td>30/08/2022</td>
+                        <td>Terça-feira</td>
+                        <td>07:30</td>
+                        <td>12:00</td>
+                        <td>13:15</td>
+                        <td>17:00</td>
+                        <td></td>
+                        <td></td>
+                        <td>Apontado</td>
                     </tr>
                 </table>
             </div>
         </div>
+        <div id="primme" class="tabcontent">
+            <form action="{% url 'apontamento' %}" method="post" enctype="multipart/form-data">
+                   {% csrf_token %}
+                    <input type="hidden" name="formulario" value="primme">
+                    {{ formPrimme }}
+                    <input type="submit" value="Enviar" class="salvar">
+            </form>
+            {{msg}}
+        </div>
+            
+        <div id="Tokyo" class="tabcontent"></div>
     </div>
 
 <script src="script/script.js"></script>
