@@ -1,8 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .forms import RegistrationCollabForm, EditCollabForm
-from .models import RegistrationCollab, TimeRegister
-from .crud import CreateCollab, UpdateCollab, DeleteCollab
+from .forms import RegistrationCollabForm
+from .models import RegistrationCollab
+from .crud import CreateCollab, UpdateCollab, DeleteCollab, CreateTimeRegister
+from .constant import INFO
 
 # Create your views here.
 def Collaborator(request):
@@ -51,4 +52,24 @@ def TimeNote(request):
     if request.method == 'GET':
         return render(request, 'apontamento.html', context)
     if request.method == 'POST':
-        return render(request, 'return.html', context)
+        UpdateError = CreateTimeRegister(post=request.POST)
+        if UpdateError == True:
+            return HttpResponse('Apontamento já existe!')
+        
+        else:
+            Collab = RegistrationCollab.objects.filter(
+                pis=int(request.POST['pis'])
+                )
+            context.update({
+                'pis':request.POST['pis'],
+                'date':request.POST['date'],
+                'entry_one':request.POST['entry_one'],
+                'exit_one':request.POST['exit_one'],
+                'entry_two':request.POST['entry_two'],
+                'exit_two':request.POST['exit_two'],
+                'entry_three':request.POST['entry_three'],
+                'exit_three':request.POST['exit_three'],
+                'info':INFO[request.POST['info']],
+                'collab':Collab
+                })
+            return render(request, 'return.html', context)

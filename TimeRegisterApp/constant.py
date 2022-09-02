@@ -27,3 +27,10 @@ STATUS_CHOICE = [
     (True, 'Ativo'),
     (False, 'Inativo')
 ]
+
+INFO = {
+    '1':'Apontado',
+    '2':'Falta',
+    '3':'Feriado',
+    '4':'Atestado'
+    }
