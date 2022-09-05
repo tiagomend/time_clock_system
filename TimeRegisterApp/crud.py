@@ -63,7 +63,9 @@ def CreateTimeRegister(post):
         time = TimeRegister.objects.create(
             key=create_key,
             date=requisition_data['date'],
-            pis=requisition_data['pis'],
+            pis=RegistrationCollab.objects.get(
+                pis=requisition_data['pis']
+            ),
             entry_one=requisition_data['entry_one'],
             entry_two=requisition_data['entry_two'],
             entry_three=requisition_data['entry_three'],

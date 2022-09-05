@@ -18,8 +18,9 @@
                     {% csrf_token %}
                     <label for="pis">Colaborador:</label>
                     <select name="pis">
-                        <option value="123456">Tiago Fernandes Mendonça</option>
-                        <option value="123457">Pedro Pacheco</option>
+                        {% for name in DataCollab %}
+                        <option value="{{name.pis}}">{{name.name}}</option>
+                        {% endfor %}
                     </select>
                     <label for="entry_one">Entrada 1:</label>
                     <input name="entry_one" type="time">

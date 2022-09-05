@@ -5,7 +5,7 @@ from .models import RegistrationCollab
 from .crud import CreateCollab, UpdateCollab, DeleteCollab, CreateTimeRegister
 from .constant import INFO
 
-# Create your views here.
+# Função views da página de cadastro de colaboradores
 def Collaborator(request):
     DataCollab = RegistrationCollab.objects.all()
     context =  {
@@ -44,6 +44,7 @@ def test(request):
         else:
             return HttpResponse('Dados existentes!')
 
+# Função views da página de apontamento
 def TimeNote(request):
     DataCollab = RegistrationCollab.objects.all()
     context =  {
@@ -57,7 +58,7 @@ def TimeNote(request):
             return HttpResponse('Apontamento já existe!')
         
         else:
-            Collab = RegistrationCollab.objects.filter(
+            Collab = RegistrationCollab.objects.get(
                 pis=int(request.POST['pis'])
                 )
             context.update({
@@ -70,6 +71,6 @@ def TimeNote(request):
                 'entry_three':request.POST['entry_three'],
                 'exit_three':request.POST['exit_three'],
                 'info':INFO[request.POST['info']],
-                'collab':Collab
+                'collab':str(Collab).upper()
                 })
             return render(request, 'return.html', context)

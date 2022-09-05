@@ -8,6 +8,9 @@ class RegistrationCollab(models.Model):
     status = models.BooleanField()
     admission = models.DateField()
     time_bank = models.BooleanField()
+
+    def __str__(self):
+        return self.name
  
 class Event(models.Model):
     event_id = models.AutoField(primary_key=True)
@@ -30,7 +33,7 @@ class TimeRegister(models.Model):
     exit_two = models.TimeField()
     exit_three = models.TimeField()
     month = models.IntegerField()
-    info = models.IntegerField()
+    info = models.IntegerField(default=1)
 
 # Armazena Banco de Horas
 class TimeBank(models.Model):

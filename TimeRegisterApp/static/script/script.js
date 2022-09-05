@@ -16,6 +16,7 @@ function close_menu(){
 }
 
 function close_table(data_id){
+    
     if (document.getElementById(data_id).style.display == "none"){
         document.getElementById(data_id).style.display = "table-row";
     }
