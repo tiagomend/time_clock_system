@@ -14,6 +14,7 @@
         <div class="medium_container">
             <!-- Aqui inicia o formulário de apontamento manual -->
             <form class="row_container" action="{% url 'apontamento' %}" method="post">
+                <input type="hidden" name="formulario" value="manual">
                 <div class="column_container">
                     {% csrf_token %}
                     <label for="pis">Colaborador:</label>
@@ -23,11 +24,11 @@
                         {% endfor %}
                     </select>
                     <label for="entry_one">Entrada 1:</label>
-                    <input name="entry_one" type="time">
+                    <input name="entry_one" type="time" value='00:00'>
                     <label for="entry_two">Entrada 2:</label>
-                    <input name="entry_two" type="time">
+                    <input name="entry_two" type="time" value='00:00'>
                     <label for="entry_three">Entrada 3:</label>
-                    <input name="entry_three" type="time">
+                    <input name="entry_three" type="time" value='00:00'>
                     <label for="info">Informação:</label>
                     <select name="info">
                         <option value="1">Apontado</option>
@@ -41,11 +42,11 @@
                     <input name="date" type="date">
                     <input type="hidden" name="form_name" value="manual">
                     <label for="exit_one">Saída 1:</label>
-                    <input name="exit_one" type="time">
+                    <input name="exit_one" type="time" value='00:00'>
                     <label for="exit_two">Saída 2:</label>
-                    <input name="exit_two" type="time">
+                    <input name="exit_two" type="time" value='00:00'>
                     <label for="exit_three">Saída 3:</label>
-                    <input name="exit_three" type="time">
+                    <input name="exit_three" type="time" value='00:00'>
                     <input type="submit" value="Salvar" class="register_button">
                 </div>
             </form>

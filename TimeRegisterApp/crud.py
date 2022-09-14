@@ -80,9 +80,20 @@ def CreateTimeRegister(post):
 
 def ReadTimeRegister(post):
     requisition_data = post
+    data = TimeRegister.objects.filter(
+        pis=requisition_data['pis'],
+        date__year=requisition_data['date'][0:4],
+        month=requisition_data['date'][5:7]
+        )
+    return data
 
 def UpdateTimeRegister(post):
     requisition_data = post
 
 def DeleteTimeRegister(post):
     requisition_data = post
+    if TimeRegister.objects.filter(pis=requisition_data['key']):
+        TimeRegister.objects.filter(pis=requisition_data['key']).delete()
+        return False
+    else:
+        return True

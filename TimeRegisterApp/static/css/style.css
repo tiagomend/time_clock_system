@@ -53,6 +53,7 @@
 
 i{
     padding: 0px 15px 0px 0px;
+    margin-left: 10px;
 }
 
 .menu_item:hover{
@@ -90,6 +91,16 @@ h2{
     margin-top: 20px;
 }
 
+h3{
+    color: rgb(59, 59, 59);
+    font-weight: 700;
+    font-size: 18px;
+    border-bottom: #b9b9b9 solid 1px;
+    padding-bottom: 10px;
+    width: 30%;
+    margin-top: 20px;
+}
+
 select, input{
     border: rgb(221, 221, 221) solid 1px;
     padding: 5px;
@@ -118,7 +129,19 @@ option{
     font-size: 17px;
     font-weight: 600;
     width: 70%;
-    margin-top: 15px;
+    margin-top: 20px;
+}
+
+.filter_button{
+    border-radius: 25px;
+    color: aliceblue;
+    background-color: #09B87A;
+    border: none;
+    padding: 10px;
+    font-size: 17px;
+    font-weight: 600;
+    width: 40%;
+    margin-top: 25px;
 }
 
 .register_button:hover{
@@ -170,6 +193,12 @@ td, th {
 
 .icon_delete{
     background-color: aliceblue;
+    border: none;
+}
+
+.column_edit_button{
+    background-color: #ffffff;
+    text-align: center;
     border: none;
 }
 
@@ -242,4 +271,15 @@ td, th {
     font-weight: 400;
     font-style: italic;
     font-size: 16px;
+}
+
+.error_message{
+    background-color: #f3779c;
+    border: #ca5e7e solid 1px;
+    border-radius: 5px;
+    padding: 20px;
+    width: 62%;
+    font-weight: 400;
+    font-size: 14px;
+    color: #ffffff;
 }

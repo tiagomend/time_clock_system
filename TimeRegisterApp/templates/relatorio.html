@@ -1,0 +1,121 @@
+{% extends 'menu.html' %}
+
+{% block relatorio %}
+<div id ="body_container_id" class="body_container">
+    <div class="column_container">
+        <h2>Relatório de Apontamento</h2>
+    </div>
+    
+    <!-- Formulário para filtrar apontamento -->
+    <form action="/relatorio/" class="row_container" method="post">
+            {% csrf_token %}
+            <div class="column_container">
+                <label for="pis">Colaborador:</label>
+                <select name="pis">
+                    {% for name in DataCollab %}
+                    <option value="{{name.pis}}">{{name.name}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="column_container">
+                <label for="date">Data:</label>
+                <input name="date" type="month">
+            </div>
+            <div class="column_container">
+                <input class="filter_button" type="submit">
+            </div>
+    </form>
+
+    <!-- Sessão p/ listar e editar os colaboradores-->
+    <div class="row_container">
+        <div class="column_container">
+            <h3>TIAGO FERNANDES MENDONÇA</h3>
+        </div>
+    </div>
+    <div class="row_container">
+        <div class="column_container">
+            <table>
+                <tr class="header_row">
+                    <th>DATA</th>
+                    <th>SEMANA</th>
+                    <th>ENTRADA 1</th>
+                    <th>SAÍDA 1</th>
+                    <th>ENTRADA 2</th>
+                    <th>SAÍDA 2</th>
+                    <th>ENTRADA 3</th>
+                    <th>SAÍDA 3</th>
+                    <th>HORAS</th>
+                    <th>HR 50%</th>
+                    <th>HR 100%</th>
+                </tr>
+                {% for data in time_filter %}
+                <tr>
+                    <td>{{data.0|date:'d/m/Y'}}</td>
+                    <td>
+                        {% if data.date|date:'l' == 'Sunday' %}
+                        Domingo
+                        {% elif data.date|date:'l' == 'Monday' %}
+                        Segunda-feira
+                        {% elif data.date|date:'l' == 'Tuesday' %}
+                        Terça-feira
+                        {% elif data.date|date:'l' == 'Wednesday' %}
+                        Quarta-feira
+                        {% elif data.date|date:'l' == 'Thursday' %}
+                        Quinta-feira
+                        {% elif data.date|date:'l' == 'Friday' %}
+                        Sexta-feira
+                        {% elif data.date|date:'l' == 'Saturday' %}
+                        Sábado
+                        {% endif %}
+                    </td>
+                    <td>{{data.2|time:'H:i'}}</td>
+                    <td>{{data.3|time:'H:i'}}</td>
+                    <td>{{data.4|time:'H:i'}}</td>
+                    <td>{{data.exit_two|time:'H:i'}}</td>
+                    <td>{{data.entry_three|time:'H:i'}}</td>
+                    <td>{{data.exit_three|time:'H:i'}}</td>
+                    <td>{{sum.forloop.counter0.0}}</td>
+                    <td>{{sum.forloop.counter0.1}}</td>
+                    <td>{{sum.forloop.counter0.2}}</td>
+                    <td>
+                        <button class="column_edit_button" onclick='close_table("row_edit_{{forloop.counter}}")'>
+                            <i class="fa-solid fa-ellipsis-vertical"></i>
+                        </button>
+                    </td>
+                </tr>
+                <tr id="row_edit_{{forloop.counter}}" class="row_edit">
+                    <form action="/colaborador/" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="form_name" value="edit_colab">
+                        <td class="column_edit"><input name="pis" type="hidden" value="{{colab.pis}}"></td>
+                        <td class="column_edit"><input name="occupation" type="text" value="{{colab.occupation}}"></td>
+                        <td class="column_edit">
+                            <select name="status" id="status_id_edit">
+                                <option {% if colab.status == True %}selected{% endif %} value="True">Ativo</option>
+                                <option {% if colab.status == False %}selected{% endif %} value="False">Inativo</option>
+                            </select>
+                        </td>
+                        <td class="column_edit">
+                            <select name="time_bank" id="time_bank_id_edit">
+                                <option {% if colab.time_bank == True %}selected{% endif %} value="True">Banco de hora</option>
+                                <option {% if colab.time_bank == False %}selected{% endif %} value="False">Hora extra</option>
+                            </select>
+                        </td>
+                        <td></td>
+                        <td><input class="register_button" type="submit" value="Editar"></td>
+                    </form>
+                    <td>
+                        <form action="/colaborador/" method="post">
+                            {% csrf_token %}
+                            <input name="form_name" type="hidden" value="form_delete_colab">
+                            <input name="pis" type="hidden" value="{{colab.pis}}">
+                            <button class="icon_delete" type="submit"><i class="fa-solid fa-trash-arrow-up"></i></button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock relatorio %}
