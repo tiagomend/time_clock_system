@@ -7,14 +7,15 @@ def converter_timedelta(time):
     duration = timedelta(hours=hrs, minutes=min, seconds=sec)
     return duration
 
-def duration_day(list):
-    sum_list = list
-
 
 def calculation(obj):
     timetables = obj
     sum_list = []
     default = timedelta(hours=8, minutes=55)
+    sum_regular = timedelta(0)
+    sum_fifty_percent = timedelta(0)
+    sum_hundred_percent = timedelta(0)
+    
     for data in timetables:
         entry_one = converter_timedelta(data.entry_one)
         exit_one = converter_timedelta(data.exit_one)
@@ -43,17 +44,29 @@ def calculation(obj):
                 fifty_percent = timedelta(0)
                 hundred_percent = timedelta(0)
         data_list = [
+            data.key,
             data.date, 
             WEEKDAY[data.date.strftime("%A")],
-            entry_one,
-            exit_one,
-            entry_two,
-            exit_two,
-            entry_three,
-            exit_three,
+            data.entry_one,
+            data.exit_one,
+            data.entry_two,
+            data.exit_two,
+            data.entry_three,
+            data.exit_three,
             regular, 
             fifty_percent, 
             hundred_percent
             ]
+        sum_regular += regular
+        sum_fifty_percent += fifty_percent
+        sum_hundred_percent += hundred_percent
         sum_list.append(data_list)
-    return sum_list
+    dict_return = {
+        'sum_list':sum_list,
+        'sum_final':[
+            sum_regular, 
+            sum_fifty_percent, 
+            sum_hundred_percent
+        ]
+    }
+    return dict_return

@@ -97,7 +97,8 @@ def TimeReport(request):
         time_filter = crud.ReadTimeRegister(request.POST)
         sum = calculation(time_filter)
         context.update({
-            'time_filter':sum
+            'time_filter':sum['sum_list'],
+            'sum_final':sum['sum_final']
             })
         return render(request, 'relatorio.html', context)
 

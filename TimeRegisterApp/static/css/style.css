@@ -106,7 +106,7 @@ select, input{
     padding: 5px;
     border-left: #0088aa solid 4px;
     background-color: #ffffff;
-    font-size: 15px;
+    font-size: 13px;
 }
 
 input:focus, select:focus{
@@ -172,8 +172,9 @@ table, tr {
 }
 
 td, th {
+    border-bottom: #d1d1d1 solid 1px;
     padding: 10px;
-    font-size: 15px;
+    font-size: 14px;
 }
 
 .column_edit{
