@@ -64,7 +64,7 @@
                         {% if colab.status == True %}Ativo{% endif %}
                         {% if colab.status == False %}Inativo{% endif %}
                     </td>
-                    <td>{{colab.admission}}</td>
+                    <td>{{colab.admission|date:'d/m/Y'}}</td>
                     <td>
                         {% if colab.time_bank == True %}Banco de Hora{% endif %}
                         {% if colab.time_bank == False %}Hora Extra{% endif %}

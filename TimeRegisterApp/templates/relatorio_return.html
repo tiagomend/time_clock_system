@@ -1,0 +1,77 @@
+{% extends 'relatorio.html' %}
+{% block relatorio_return %}
+
+<!-- Sessão p/ listar e editar os apontamentos-->
+<div class="row_container">
+    <div class="column_container">
+        <table>
+            <tr class="header_row">
+                <th>DATA</th>
+                <th>SEMANA</th>
+                <th>ENT 1</th>
+                <th>SAIDA 1</th>
+                <th>ENT 2</th>
+                <th>SAIDA 2</th>
+                <th>ENT 3</th>
+                <th>SAIDA 3</th>
+                <th>HR'S</th>
+                <th>HR 50%</th>
+                <th>HR 100%</th>
+            </tr>
+            {% for data in time_filter %}
+            <tr>
+                <td>{{data.1|date:'d/m/Y'}}</td>
+                <td>
+                    {{data.2}}
+                </td>
+                <td>{{data.3|time:'H:i'}}</td>
+                <td>{{data.4|time:'H:i'}}</td>
+                <td>{{data.5|time:'H:i'}}</td>
+                <td>{{data.6|time:'H:i'}}</td>
+                <td>{{data.7|time:'H:i'}}</td>
+                <td>{{data.8|time:'H:i'}}</td>
+                <td>{{data.9}}</td>
+                <td>{{data.10}}</td>
+                <td>{{data.11}}</td>
+                <td>
+                    <button class="column_edit_button" onclick='close_table("row_edit_{{forloop.counter}}")'>
+                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                    </button>
+                </td>
+            </tr>
+            <tr id="row_edit_{{forloop.counter}}" class="row_edit">
+                <form action="/relatorio/" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="form_name" value="edit_time">
+                    <input type="hidden" name="pis" value="{{collab.pis}}">
+                    <input type="hidden" name="date" value="{{date}}">
+                    <td colspan="10" class="column_edit">
+                        <input name="key" type="hidden" value="{{data.0}}">
+                        <input name="entry_one" type="time" value="{{data.3|time:'H:i'}}">
+                        <input name="exit_one" type="time" value="{{data.4|time:'H:i'}}">
+                        <input name="entry_two" type="time" value="{{data.5|time:'H:i'}}">
+                        <input name="exit_two" type="time" value="{{data.6|time:'H:i'}}">
+                        <input name="entry_three" type="time" value="{{data.7|time:'H:i'}}">
+                        <input name="exit_three" type="time" value="{{data.8|time:'H:i'}}">
+                    </td>
+                    <td>    
+                        <input class="register_button" type="submit" value="Editar">
+                    </td>
+                </form>
+                <td>
+                    <form action="/relatorio/" method="post">
+                        {% csrf_token %}
+                        <input name="form_name" type="hidden" value="form_delete_time">
+                        <input type="hidden" name="pis" value="{{collab.pis}}">
+                        <input type="hidden" name="date" value="{{date}}">
+                        <input name="key" type="hidden" value="{{data.0}}">
+                        <button class="icon_delete" type="submit"><i class="fa-solid fa-trash-arrow-up"></i></button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+
+{% endblock relatorio_return %}

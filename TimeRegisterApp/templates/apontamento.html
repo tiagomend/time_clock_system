@@ -14,7 +14,7 @@
         <div class="medium_container">
             <!-- Aqui inicia o formulário de apontamento manual -->
             <form class="row_container" action="{% url 'apontamento' %}" method="post">
-                <input type="hidden" name="formulario" value="manual">
+                <input type="hidden" name="form_name" value="manual">
                 <div class="column_container">
                     {% csrf_token %}
                     <label for="pis">Colaborador:</label>

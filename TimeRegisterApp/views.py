@@ -35,18 +35,6 @@ def Collaborator(request):
                 return HttpResponse('Colaborador não existe!')
 
 
-def test(request):
-    FormCollab = RegistrationCollabForm()
-    if request.method == 'GET':
-        return render(request, 'test.html', {'FormCollab':FormCollab})
-    if request.method == 'POST':
-        UpdateError = crud.CreateCollab(post=request.POST)
-        if UpdateError == False:
-            return HttpResponse('Dados cadastrados com sucesso!')
-        else:
-            return HttpResponse('Dados existentes!')
-
-
 # Função views da página de apontamento
 def TimeNote(request):
     DataCollab = RegistrationCollab.objects.all()
@@ -56,7 +44,7 @@ def TimeNote(request):
     if request.method == 'GET':
         return render(request, 'apontamento.html', context)
     if request.method == 'POST':
-        if request.POST['formulario'] == 'manual':
+        if request.POST['form_name'] == 'manual':
             UpdateError = crud.CreateTimeRegister(post=request.POST)
             if UpdateError == True:
                 Collab = RegistrationCollab.objects.get(
@@ -95,10 +83,27 @@ def TimeReport(request):
         return render(request, 'relatorio.html', context)
     if request.method == 'POST':
         time_filter = crud.ReadTimeRegister(request.POST)
+        collab = RegistrationCollab.objects.get(pis=request.POST['pis'])
         sum = calculation(time_filter)
+        date = request.POST['date']
         context.update({
-            'time_filter':sum['sum_list'],
-            'sum_final':sum['sum_final']
-            })
-        return render(request, 'relatorio.html', context)
+                'time_filter':sum['sum_list'],
+                'sum_final':sum['sum_final'],
+                'collab':collab,
+                'date':date
+                })
+        if request.POST['form_name'] == 'filtro':
+            return render(request, 'relatorio_return.html', context)
+        if request.POST['form_name'] == 'edit_time':
+            UpdateError = crud.UpdateTimeRegister(request.POST)
+            if UpdateError == True:
+                return HttpResponse('Apontamento inexistente!')
+            else:
+                return render(request, 'relatorio_return.html', context)
+        elif request.POST['form_name'] == 'form_delete_time':
+            UpdateError = crud.DeleteTimeRegister(request.POST)
+            if UpdateError == True:
+                return HttpResponse('Apontamento inexistente!')
+            else:
+                return render(request, 'relatorio_return.html', context)
 

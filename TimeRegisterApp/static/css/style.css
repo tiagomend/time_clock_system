@@ -106,7 +106,7 @@ select, input{
     padding: 5px;
     border-left: #0088aa solid 4px;
     background-color: #ffffff;
-    font-size: 13px;
+    font-size: 15px;
 }
 
 input:focus, select:focus{
@@ -121,6 +121,7 @@ option{
 }
 
 .register_button{
+    display: inline;
     border-radius: 25px;
     color: aliceblue;
     background-color: #09B87A;

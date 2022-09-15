@@ -89,11 +89,23 @@ def ReadTimeRegister(post):
 
 def UpdateTimeRegister(post):
     requisition_data = post
+    if TimeRegister.objects.filter(key=requisition_data['key']):
+        TimeRegister.objects.filter(key=requisition_data['key']).update(
+            entry_one=requisition_data['entry_one'],
+            exit_one=requisition_data['exit_one'],
+            entry_two=requisition_data['entry_two'],
+            exit_two=requisition_data['exit_two'],
+            entry_three=requisition_data['entry_three'],
+            exit_three=requisition_data['exit_three'],
+        )
+        return False
+    else:
+        return True
 
 def DeleteTimeRegister(post):
     requisition_data = post
-    if TimeRegister.objects.filter(pis=requisition_data['key']):
-        TimeRegister.objects.filter(pis=requisition_data['key']).delete()
+    if TimeRegister.objects.filter(key=requisition_data['key']):
+        TimeRegister.objects.filter(key=requisition_data['key']).delete()
         return False
     else:
         return True
