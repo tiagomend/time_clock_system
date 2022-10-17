@@ -44,7 +44,7 @@
                     {% csrf_token %}
                     <input type="hidden" name="form_name" value="edit_time">
                     <input type="hidden" name="pis" value="{{collab.pis}}">
-                    <input type="hidden" name="date" value="{{date}}">
+                    <input type="hidden" name="date" value="{{data.1|date:'Y m d'}}">
                     <td colspan="10" class="column_edit">
                         <input name="key" type="hidden" value="{{data.0}}">
                         <input name="entry_one" type="time" value="{{data.3|time:'H:i'}}">

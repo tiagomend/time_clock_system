@@ -1,8 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .calculation import calculation
-from .forms import RegistrationCollabForm
-from .models import RegistrationCollab, TimeRegister
+from .models import RegistrationCollab
 from . import crud
 from .constant import INFO
 
@@ -73,7 +72,7 @@ def TimeNote(request):
                     })
                 return render(request, 'note_success_return.html', context)
 
-
+# Função views da página de relatório
 def TimeReport(request):
     DataCollab = RegistrationCollab.objects.all()
     context =  {
@@ -82,23 +81,40 @@ def TimeReport(request):
     if request.method == 'GET':
         return render(request, 'relatorio.html', context)
     if request.method == 'POST':
-        time_filter = crud.ReadTimeRegister(request.POST)
-        collab = RegistrationCollab.objects.get(pis=request.POST['pis'])
-        sum = calculation(time_filter)
         date = request.POST['date']
-        context.update({
+        pis = request.POST['pis']
+        if request.POST['form_name'] == 'filtro':
+            time_filter = crud.ReadTimeRegister(date, pis).order_by('key')
+            collab = RegistrationCollab.objects.get(pis=request.POST['pis'])
+            sum = calculation(time_filter)
+            month = request.POST['date'][5:7]
+            year = request.POST['date'][0:4]
+            context.update({
                 'time_filter':sum['sum_list'],
                 'sum_final':sum['sum_final'],
                 'collab':collab,
-                'date':date
+                'month':month,
+                'year':year,
                 })
-        if request.POST['form_name'] == 'filtro':
             return render(request, 'relatorio_return.html', context)
-        if request.POST['form_name'] == 'edit_time':
+        elif request.POST['form_name'] == 'edit_time':
             UpdateError = crud.UpdateTimeRegister(request.POST)
             if UpdateError == True:
                 return HttpResponse('Apontamento inexistente!')
             else:
+                print(request.POST['date'])
+                time_filter = crud.ReadTimeRegister(date, pis).order_by('key')
+                collab = RegistrationCollab.objects.get(pis=request.POST['pis'])
+                sum = calculation(time_filter)
+                month = request.POST['date'][5:7]
+                year = request.POST['date'][0:4]
+                context.update({
+                    'time_filter':sum['sum_list'],
+                    'sum_final':sum['sum_final'],
+                    'collab':collab,
+                    'month':month,
+                    'year':year,
+                    })
                 return render(request, 'relatorio_return.html', context)
         elif request.POST['form_name'] == 'form_delete_time':
             UpdateError = crud.DeleteTimeRegister(request.POST)
@@ -107,3 +123,5 @@ def TimeReport(request):
             else:
                 return render(request, 'relatorio_return.html', context)
 
+def time_bank(request):
+    return render(request, 'time_bank.html')

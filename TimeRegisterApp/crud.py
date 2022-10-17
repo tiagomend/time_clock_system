@@ -1,5 +1,5 @@
-from calendar import month
-from .models import RegistrationCollab, TimeRegister
+from .models import RegistrationCollab, TimeRegister, TimeBank
+from datetime import timedelta
 
 # Funções CRUD do RegistrationCollab
 def CreateCollab(post):
@@ -78,12 +78,12 @@ def CreateTimeRegister(post):
         time.save()
         return False
 
-def ReadTimeRegister(post):
-    requisition_data = post
+def ReadTimeRegister(date, pis):
+    # Formato da entrada 'pis': ['12345678910'], 'date': ['2022-09']
     data = TimeRegister.objects.filter(
-        pis=requisition_data['pis'],
-        date__year=requisition_data['date'][0:4],
-        month=requisition_data['date'][5:7]
+        pis=pis,
+        date__year=date[0:4],
+        month=date[5:7]
         )
     return data
 
@@ -108,4 +108,39 @@ def DeleteTimeRegister(post):
         TimeRegister.objects.filter(key=requisition_data['key']).delete()
         return False
     else:
+        return True
+
+def update_time_bank(pis_p, obj):
+    if TimeBank.objects.filter(
+            pis=pis_p,
+            month=int(obj['sum_list'][1][0][3:5]),
+            year=int(obj['sum_list'][1][0][6:10]),
+        ):
+        time_bank = TimeBank.objects.get(
+            pis=pis_p,
+            month=int(obj['sum_list'][1][0][3:5]),
+            year=int(obj['sum_list'][1][0][6:10]),
+        )
+        hours = obj['sum_final'][1].total_seconds() + obj['sum_final'][2].total_seconds()
+        if time_bank.positive_hours == hours:
+            pass
+        else:
+            time_bank.positive_hours = hours
+            time_bank.negative_hours = hours - time_bank.negative_hours
+            time_bank.save()
+
+    else:
+        time_bank = TimeBank.objects.create(
+            pis=RegistrationCollab.objects.get(
+                pis=pis_p
+            ),
+            month=int(obj['sum_list'][1][0][3:5]),
+            year=int(obj['sum_list'][1][0][6:10]),
+            positive_hours=obj['sum_final'][1].total_seconds() + obj['sum_final'][2].total_seconds(),
+            negative_hours=0,
+            hours=obj['sum_final'][1].total_seconds() + obj['sum_final'][2].total_seconds(),
+            )
+        time_bank.save()
+        print(obj['sum_final'][1] + obj['sum_final'][2])
+        print('Deu certo!')
         return True

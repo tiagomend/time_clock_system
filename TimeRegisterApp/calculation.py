@@ -1,5 +1,7 @@
-from datetime import time, timedelta
+from datetime import timedelta
 from .constant import WEEKDAY
+from .models import RegistrationCollab, TimeBank
+from .crud import update_time_bank
 
 # Função para converter time em timedelta
 def converter_timedelta(time):
@@ -7,6 +9,22 @@ def converter_timedelta(time):
     duration = timedelta(hours=hrs, minutes=min, seconds=sec)
     return duration
 
+def extract_pis(key):
+    # formato do key - '08/09/2022-12345678910'
+    pis = key[11:]
+    return pis
+
+def calculation_time_bank(obj):
+    pis = extract_pis(key=obj['sum_list'][0][0])
+    collab = RegistrationCollab.objects.get(
+        pis=pis
+        )
+    if collab.time_bank == True:
+        print("True")
+        update_time_bank(pis_p=pis, obj=obj)
+    else:
+        print('False')
+    
 
 def calculation(obj):
     timetables = obj
@@ -60,7 +78,11 @@ def calculation(obj):
         sum_regular += regular
         sum_fifty_percent += fifty_percent
         sum_hundred_percent += hundred_percent
-        sum_list.append(data_list)
+        sum_list.append(data_list) # A cada loop data_list será inserido no objeto sum_list
+
+    # A variável dict_return é um dicionário que contém duas chaves.
+    # A chave 'sum_list' contém os dados da soma das horas de cada dia.
+    # A chave 'sum_final' contém objetos que armazenam a soma das horas normais, e extras (50% e 100%).
     dict_return = {
         'sum_list':sum_list,
         'sum_final':[
@@ -69,4 +91,5 @@ def calculation(obj):
             sum_hundred_percent
         ]
     }
+    calculation_time_bank(dict_return)
     return dict_return

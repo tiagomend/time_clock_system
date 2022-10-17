@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import time
 
 # Armazena dados dos Colaborades
 class RegistrationCollab(models.Model):
@@ -26,12 +27,12 @@ class TimeRegister(models.Model):
     key = models.CharField(primary_key=True, max_length=30)
     date = models.DateField()
     pis = models.ForeignKey(RegistrationCollab, on_delete=models.CASCADE)
-    entry_one = models.TimeField(null=True)
-    entry_two = models.TimeField(null=True)
-    entry_three = models.TimeField(null=True)
-    exit_one = models.TimeField(null=True)
-    exit_two = models.TimeField(null=True)
-    exit_three = models.TimeField(null=True)
+    entry_one = models.TimeField(null=True, default=time(0, 0, 0))
+    entry_two = models.TimeField(null=True, default=time(0, 0, 0))
+    entry_three = models.TimeField(null=True, default=time(0, 0, 0))
+    exit_one = models.TimeField(null=True, default=time(0, 0, 0))
+    exit_two = models.TimeField(null=True, default=time(0, 0, 0))
+    exit_three = models.TimeField(null=True, default=time(0, 0, 0))
     month = models.IntegerField()
     info = models.IntegerField(default=1)
 
@@ -41,6 +42,6 @@ class TimeBank(models.Model):
     pis = models.ForeignKey(RegistrationCollab, on_delete=models.CASCADE)
     month = models.IntegerField()
     year = models.IntegerField()
-    positive_hours = models.TimeField()
-    negative_hours = models.TimeField()
-    hours = models.TimeField()
+    positive_hours = models.IntegerField()
+    negative_hours = models.IntegerField()
+    hours = models.IntegerField()

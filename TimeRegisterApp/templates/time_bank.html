@@ -1,0 +1,38 @@
+{% extends 'menu.html' %}
+
+{% block time_bank %}
+<div id ="body_container_id" class="body_container">
+    <div class="column_container">
+        <h2>Banco de Horas</h2>
+    </div>
+    
+    <!-- Formulário para filtrar apontamento -->
+    <form action="/banco-de-horas/" class="row_container" method="post">
+            <input type="hidden" name="form_name" value="bank">
+            <div class="column_container">
+                <label for="pis">Colaborador:</label>
+                <select name="pis">
+                    {% for name in DataCollab %}
+                    <option {% if collab.pis == name.pis %}selected{% endif %} value="{{name.pis}}">{{name.name}}</option>
+                    {% endfor %}
+                </select>
+                <label for="tirar_horas">Tirar Horas:</label>
+                <input name="tirar_horas" type="time" value="{{horas_positivas}}">
+                <label for="description">Descrição:</label>
+                <input name="description" type="text" value="{{horas_positivas}}">
+                <input class="filter_button" type="submit">
+            </div>
+            <div class="column_container">
+                <label for="positive_hours">Horas Positivas:</label>
+                <input name="positive_hours" type="time" value="{{horas_positivas}}" disabled>
+                <label for="negative_hours">Horas Negativas:</label>
+                <input name="positive_hours" type="time" value="{{horas_positivas}}" disabled>
+                <label for="hours">Total de horas:</label>
+                <input name="hours" type="time" value="{{horas_positivas}}" disabled>
+            </div>
+            <div class="column_container">
+                {% csrf_token %}
+            </div>
+    </form>
+</div>
+{% endblock time_bank %}
